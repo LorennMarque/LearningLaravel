@@ -1,5 +1,4 @@
-@extends('layout')
-@section('content')
+<x-layout>
 @include('partials._hero')
 @include('partials._searchbox')
 {{-- <h1>{{$heading}}</h1> --}}
@@ -17,10 +16,11 @@
 <div class="lg:grid lg:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4">
 @unless(count($listings)==0)
 @foreach($listings as $listing)
+    <x-listing-card :listing="$listing"/>
     {{-- <li>{{ $listing['title']}}</li> --}}
     {{-- <li>{{ $listing['description']}}</li> --}}
     {{-- <li><a href="/listings/{{ $listing['id']}}">Ver más</a></li> --}}
-    {{-- <hr> --}}
+    {{-- <hr>
     <div class="bg-gray-50 border border-gray-200 rounded p-6 ">
         <div class="flex">
             <img
@@ -50,10 +50,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endforeach
 @else
 <p>No hay listings</p>
 @endunless
 <div>
-@endsection
+</x-layout>

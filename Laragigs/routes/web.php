@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Symfony\Component\HttpFoundation\Request;
 use App\Models\Listing;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ListingController;
+use Symfony\Component\HttpFoundation\Request;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -47,12 +48,15 @@ Route::get('/', function () {
 // ]);
 // });
 
-Route::get('/', function(){
-    return view('listings',[
-        'heading'=> "Latest listings",
-        'listings' => Listing::all() # Usamos el modelo que hubo que importar
-    ]);
-});
+// Route::get('/', function(){
+//     return view('listings',[
+//         'heading'=> "Latest listings",
+//         'listings' => Listing::all() # Usamos el modelo que hubo que importar
+//     ]);
+// });
+
+# All listings
+Route::get('/', [ListingController::class,'index']);
 
 // Route::get('listings/{id}', function($id){
 //     $listing = Listing::find($id); # Usamos el modelo que hubo que importar
@@ -68,8 +72,22 @@ Route::get('/', function(){
 // });
 
 # ALternative way. Model listing
-Route::get('listings/{listing}', function(Listing $listing){
-    return view('listing',[
-        'listing' => $listing
-    ]);
-});
+// Route::get('listings/{listing}', function(Listing $listing){
+//     return view('listing',[
+//         'listing' => $listing
+//     ]);
+// });
+# Show create form
+Route::get('/listings/create', [ListingController::class, 'create']);
+
+# Single listing
+Route::get('/listings/{listing}', [ListingController::class,'show']);
+
+
+# COMMON RESOURCE ROUTES
+# index - Show all listings
+# create - show form to create new listing
+# store - Store new listing
+# edit - show form to edit listing
+# update, update listing
+# destroy - delete listing
