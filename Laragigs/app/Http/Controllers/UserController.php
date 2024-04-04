@@ -52,7 +52,7 @@ class UserController extends Controller
 
         if(auth()->attempt($formFields)){
             $request->session()->regenerate();
-            return view("/listings")->with('message','You are logged in!');
+            return redirect("/listings")->with('message','You are logged in!');
         }
 
         return back()->withErrors(['email' => 'Invalid credentials'])->onlyInput('email');

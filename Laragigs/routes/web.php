@@ -110,7 +110,7 @@ Route::post('/logout',[UserController::class,'logout']);
 Route::get('/login',[UserController::class,'login']);
 
 #Log in user
-Route::get('/users/authenticate',[UserController::class,'authenticate']);
+Route::post('/users/authenticate',[UserController::class,'authenticate']);
 
 # COMMON RESOURCE ROUTES
 # index - Show all listings
