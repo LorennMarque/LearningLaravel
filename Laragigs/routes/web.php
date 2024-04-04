@@ -2,6 +2,7 @@
 
 use App\Models\Listing;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ListingController;
 use Symfony\Component\HttpFoundation\Request;
 Route::get('/', function () {
@@ -56,7 +57,7 @@ Route::get('/', function () {
 // });
 
 # All listings
-Route::get('/', [ListingController::class,'index']);
+Route::get('/listings', [ListingController::class,'index']);
 
 // Route::get('listings/{id}', function($id){
 //     $listing = Listing::find($id); # Usamos el modelo que hubo que importar
@@ -83,6 +84,21 @@ Route::get('/listings/create', [ListingController::class, 'create']);
 # Single listing
 Route::get('/listings/{listing}', [ListingController::class,'show']);
 
+
+# Store listing data
+Route::post('/listings', [ListingController::class,'store']);
+
+# Show edit form
+Route::get('/listings/{listing}/edit',[ListingController::class,'edit']);
+
+# Update listing
+Route::put('/listings/{listing}',[ListingController::class,'update']);
+
+Route::delete('/listings/{listing}',[ListingController::class,'destroy']);
+
+
+# Show register form
+Route::get('/register',[UserController::class,'create']);
 
 # COMMON RESOURCE ROUTES
 # index - Show all listings

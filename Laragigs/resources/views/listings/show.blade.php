@@ -10,7 +10,7 @@
     >
         <img
             class="w-48 mr-6 mb-6"
-            src="{{asset('images/logo.jpg')}}"
+            src="{{$listing->logo ? asset('storage/' . $listing->logo ) : asset('images/logo.jpg')}}"
             alt=""
         />
 
@@ -52,6 +52,19 @@
             </div>
         </div>
     </div>
+</x-card>
+<x-card class="mt-4 p-2 flex space-x-6">
+    <a href="/listings/{{$listing->id}}/edit">
+    <i class="fa-solid fa-pencil"></i> Edit
+    </a>
+
+    <form method="POST" action="/listings/{{$listing->id}}">
+    @csrf
+    @method("DELETE")
+    <button class="text-red-500">
+        <i class="fa-solid fa-trash"></i>Delete gig
+    </button>
+    </form>
 </x-card>
 {{-- </div> --}}
 </div>
