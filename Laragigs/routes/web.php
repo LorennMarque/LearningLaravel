@@ -100,6 +100,18 @@ Route::delete('/listings/{listing}',[ListingController::class,'destroy']);
 # Show register form
 Route::get('/register',[UserController::class,'create']);
 
+# Register user
+Route::post('/users',[UserController::class,'store']);
+
+#Log user out
+Route::post('/logout',[UserController::class,'logout']);
+
+# Show login form
+Route::get('/login',[UserController::class,'login']);
+
+#Log in user
+Route::get('/users/authenticate',[UserController::class,'authenticate']);
+
 # COMMON RESOURCE ROUTES
 # index - Show all listings
 # create - show form to create new listing
