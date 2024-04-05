@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('listings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string("title");
             $table->string("logo")->nullable(); #If it does not have an image is ok
             $table->string("tags");

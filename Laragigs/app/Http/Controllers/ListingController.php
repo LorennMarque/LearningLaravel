@@ -57,6 +57,8 @@ class ListingController extends Controller
         }
 
         // php artisan storage:link
+        
+        $formFields['user_id'] = auth()->id();
 
         Listing::create($formFields);
 
